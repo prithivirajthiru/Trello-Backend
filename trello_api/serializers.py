@@ -8,9 +8,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
         #extra_kwargs = {'password': {'write_only': True}}
     def validate(self, data):
-        if data['username']:
-            if User.objects.filter(username=data['username']).exists():
-                raise serializers.ValidationError('username is taken')
+        # if data['name']:
+        #     if User.objects.filter(username=data['name']).exists():
+        #         raise serializers.ValidationError('name is taken')
 
         if data['mailId']:
             if User.objects.filter(mailId=data['mailId']).exists():
