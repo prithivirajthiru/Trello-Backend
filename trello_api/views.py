@@ -88,14 +88,20 @@ class UserLoginAPIView(APIView):
     def post(self, request):
         email = request.data.get('mailId')
         password = request.data.get('password')
-        user = User.objects.get(mailId=email)
-        print(user.password)    
-        if user.password==password:
-            serializer=UserSerializer(user)
-            return Response({'data':serializer.data,'detail': 'Login successful'}, status=status.HTTP_200_OK)
-        else:
-            return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         
+        
+        try:
+            user = User.objects.get(mailId=email)
+            if user.password==password:
+               serializer=UserSerializer(user)
+               return Response({'data':serializer.data,'detail': 'Login successful'}, status=status.HTTP_200_OK)
+
+
+        except User.DoesNotExist:   
+            return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+           
+        
+              
 @api_view(['GET'])
 def getColumnWithCardBasedOnUser(self,id):
     column_cards_dict = {}

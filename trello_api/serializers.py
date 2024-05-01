@@ -11,9 +11,11 @@ class UserSerializer(serializers.ModelSerializer):
         # if data['name']:
         #     if User.objects.filter(username=data['name']).exists():
         #         raise serializers.ValidationError('name is taken')
+        user_id = self.context['view'].kwargs.get('pk')  # Get user ID from URL kwargs
 
-        if data['mailId']:
-            if User.objects.filter(mailId=data['mailId']).exists():
+        if user_id:
+            existing_user = User.objects.exclude(id=user_id).filter(mailId=data['mailId']).first()
+            if existing_user:
                 raise serializers.ValidationError('mailId is taken')    
         return data
         
