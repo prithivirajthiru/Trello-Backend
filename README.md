@@ -32,13 +32,14 @@ GET : http://127.0.0.1:8000/api/users/1 user Id
 
 columns
 http://127.0.0.1:8000/api/columns/
-http://127.0.0.1:8000/api/columns/1 user Id
+http://127.0.0.1:8000/api/columns/1 columns Id
 
 
 
 cards
 http://127.0.0.1:8000/api/cards/
-http://127.0.0.1:8000/api/cards/1 user Id
+cards update and Also use Move Card to Another Column:
+http://127.0.0.1:8000/api/cards/1 card Id
 
 
 Details Project Documentation
